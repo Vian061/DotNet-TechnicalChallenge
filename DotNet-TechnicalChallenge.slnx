@@ -1,10 +1,4 @@
 <Solution>
-  <Folder Name="/ECommerce/">
-    <Project Path="ECommerce.API/ECommerce.API.csproj" />
-    <Project Path="ECommerce.Application/ECommerce.Application.csproj" />
-    <Project Path="ECommerce.Domain/ECommerce.Domain.csproj" />
-    <Project Path="ECommerce.Infrastructure/ECommerce.Infrastructure.csproj" />
-  </Folder>
   <Folder Name="/HealthCare/">
     <Project Path="HealthCare.API/HealthCare.API.csproj" />
     <Project Path="HealthCare.Application/HealthCare.Application.csproj" />
