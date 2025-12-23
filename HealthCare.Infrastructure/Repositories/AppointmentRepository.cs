@@ -1,6 +1,7 @@
 ﻿using BuildingBlocks.Persistence.Repositories;
 using BuildingBlocks.Shared.Entities;
 using HealthCare.Domain.Entities;
+using HealthCare.Domain.Enums;
 using HealthCare.Domain.Interfaces.Repositories;
 using HealthCare.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
@@ -35,7 +36,7 @@ namespace HealthCare.Infrastructure.Repositories
             );
         }
 
-        public override async Task<Appointment?> GetByAliasAsync(int id)
+        public override async Task<Appointment?> GetByIdAsync(int id)
         {
             return await Context.Appointments
                 .Include(_ => _.Doctor)
@@ -43,7 +44,19 @@ namespace HealthCare.Infrastructure.Repositories
                 .FirstOrDefaultAsync(_ => _.Id == id);
         }
 
-        public async Task<Appointment> CreateAsync(Appointment appointment)
+        public async Task<List<Appointment>> GetActiveAppointmentsInRangeAsync(int doctorId, DateTime start, DateTime end) 
+        {
+            return await Context.Appointments
+                .Where(_ => _.DoctorId == doctorId
+                            && _.Status == AppointmentStatus.Active
+                            && ((_.StartUtc >= start && _.StartUtc < end)
+                                || (_.EndUtc > start && _.EndUtc <= end)
+                                || (_.StartUtc <= start && _.EndUtc >= end)))
+                .ToListAsync();
+		}
+
+
+		public async Task<Appointment> CreateAsync(Appointment appointment)
         {
             var result = Context.Appointments.Add(appointment);
             await Context.SaveChangesAsync();

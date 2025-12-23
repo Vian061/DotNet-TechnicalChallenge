@@ -9,7 +9,7 @@ using System.Text;
 
 namespace HealthCare.Application.CQRS.Doctors
 {
-    public record GetDoctorByIdCommand(int Id) : IRequest<DoctorDTO?>;
+    public sealed record GetDoctorByIdCommand(int Id) : IRequest<DoctorDTO?>;
 
     public class GetDoctorByIdCommandHandler : IRequestHandler<GetDoctorByIdCommand, DoctorDTO?>
     {
@@ -22,7 +22,7 @@ namespace HealthCare.Application.CQRS.Doctors
         }
         public async Task<DoctorDTO?> Handle(GetDoctorByIdCommand request, CancellationToken cancellationToken)
         {
-            Doctor? doctor = await _doctorRepository.GetByAliasAsync(request.Id);
+            Doctor? doctor = await _doctorRepository.GetByIdAsync(request.Id);
             return _mapper.Map<DoctorDTO?>(doctor);
         }
 	}

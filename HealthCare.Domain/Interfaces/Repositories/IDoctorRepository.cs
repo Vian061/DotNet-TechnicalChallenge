@@ -6,10 +6,7 @@ using System.Text;
 
 namespace HealthCare.Domain.Interfaces.Repositories
 {
-    public interface IDoctorRepository : IBaseSQLServerRepository<Doctor>
-    {
-		Task<Doctor> CreateAsync(Doctor datum);
-		Task<Doctor> UpdateAsync(Doctor datum);
-
+    public interface IDoctorRepository : IBaseSQLServerRepository<Doctor>, ITransactionRepository<Doctor>
+	{
 	}
 }

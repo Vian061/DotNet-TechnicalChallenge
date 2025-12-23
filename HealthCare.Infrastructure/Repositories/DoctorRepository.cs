@@ -35,7 +35,7 @@ namespace HealthCare.Infrastructure.Repositories
             );
         }
 
-        public override async Task<Doctor?> GetByAliasAsync(int id)
+        public override async Task<Doctor?> GetByIdAsync(int id)
         {
             return await Context.Doctors
                 .Include(_ => _.Appointments)

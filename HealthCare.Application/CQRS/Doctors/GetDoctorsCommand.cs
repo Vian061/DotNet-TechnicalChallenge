@@ -10,7 +10,7 @@ using System.Text;
 
 namespace HealthCare.Application.CQRS.Doctors
 {
-    public record GetDoctorsCommand(int PageNumber, int PageSize): IRequest<PagedResult<DoctorDTO>>;
+    public sealed record GetDoctorsCommand(int PageNumber, int PageSize): IRequest<PagedResult<DoctorDTO>>;
     
     public class GetDoctorsCommandHandler : IRequestHandler<GetDoctorsCommand, PagedResult<DoctorDTO>>
     {

@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\Validators\" />
+    <Compile Remove="Interfaces\Validators\**" />
+    <EmbeddedResource Remove="Interfaces\Validators\**" />
+    <None Remove="Interfaces\Validators\**" />
   </ItemGroup>
 
   <ItemGroup>

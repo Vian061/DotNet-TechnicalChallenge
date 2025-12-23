@@ -1,4 +1,5 @@
 using BuildingBlocks.Shared.Configs;
+using HealthCare.API.Middlewares;
 using HealthCare.Application;
 using HealthCare.Infrastructure;
 using Newtonsoft.Json;
@@ -39,6 +40,8 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BuildingBlocks.Common.Extentions
 {
-    public static class StringExtentions
+    public static class StringExtensions
     {
         public static string Right(this string s, int length)
         {

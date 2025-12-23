@@ -12,7 +12,11 @@ namespace HealthCare.Application.MappingProfiles
         public DoctorScheduleProfiles()
         {
             CreateMap<DoctorScheduleDTO, DoctorSchedule>()
-                .ForMember(dest => dest.Alias, opt => opt.MapFrom(src => string.IsNullOrEmpty(src.Alias) ? Guid.NewGuid().ToString() : src.Alias))
+                .ForMember(dest => dest.DaysOfWeek, opt => opt.MapFrom(src => Enum.Parse<Domain.Enums.DayOfWeekFlags>(src.DaysOfWeek)));
+            
+            CreateMap<CreateDoctorScheduleDTO, DoctorSchedule>()
+                .ForMember(dest => dest.Alias, opt => opt.MapFrom(src => Guid.NewGuid().ToString()))
+                .ForMember(dest => dest.DoctorId, opt => opt.MapFrom(src => src.DoctorId))
                 .ForMember(dest => dest.DaysOfWeek, opt => opt.MapFrom(src => Enum.Parse<Domain.Enums.DayOfWeekFlags>(src.DaysOfWeek)));
 
             CreateMap<DoctorSchedule, DoctorScheduleDTO>()

@@ -9,7 +9,7 @@ using System.Text;
 
 namespace HealthCare.Application.CQRS.Doctors
 {
-    public record UpdateDoctorCommand(DoctorDTO Doctor) : IRequest<DoctorDTO>;
+    public sealed record UpdateDoctorCommand(DoctorDTO Doctor) : IRequest<DoctorDTO>;
 
     public class UpdateDoctorCommandHandler : IRequestHandler<UpdateDoctorCommand, DoctorDTO>
     {

@@ -38,6 +38,17 @@ namespace HealthCare.Infrastructure.Context
                 e.HasIndex(x => new { x.DoctorId, x.StartUtc, x.EndUtc })
                  .HasFilter("[Status] = 10"); // Active only
             });
-        }
+
+            b.Entity<DoctorSchedule>(e =>
+            {
+                e.HasKey(x => x.Id);
+                e.HasOne(x => x.Doctor)
+                 .WithMany(x => x.Schedules)
+                 .HasForeignKey(x => x.DoctorId)
+                 .OnDelete(DeleteBehavior.Cascade);
+                e.HasIndex(x => new { x.DoctorId, x.DaysOfWeek, x.StartTime, x.EndTime })
+                 .IsUnique();
+            });
+		}
     }
 }

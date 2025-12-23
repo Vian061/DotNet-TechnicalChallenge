@@ -6,6 +6,7 @@ namespace HealthCare.Domain.Enums
 {
     public enum DayOfWeekFlags
     {
+        None = 0,
         Monday = 10,
         Tuesday = 20,
         Wednesday = 30,

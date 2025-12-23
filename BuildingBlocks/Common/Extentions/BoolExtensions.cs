@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BuildingBlocks.Common.Extentions
 {
-    public static class BoolExtentions
+    public static class BoolExtensions
     {
         public static bool IsBetween(
             this DateTime target,
@@ -12,11 +12,6 @@ namespace BuildingBlocks.Common.Extentions
             DateTime end)
         {
             return target >= start && target <= end;
-        }
-
-        public static bool IsOverlapping(DateTime start, DateTime end)
-        {
-            return start >= end;
         }
 
         public static bool IsOverlapping(
