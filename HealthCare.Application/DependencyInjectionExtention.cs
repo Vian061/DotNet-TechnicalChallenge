@@ -1,4 +1,6 @@
-﻿namespace HealthCare.Application
+﻿using Microsoft.Extensions.DependencyInjection;
+
+namespace HealthCare.Application
 {
 	public static class DependencyInjectionExtention
 	{

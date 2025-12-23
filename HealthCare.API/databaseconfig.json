@@ -1,0 +1,4 @@
+{
+	"ConnectionString": "Server=localhost;Database=HealthCareDB;User Id=sa;Password=QwertY!23;TrustServerCertificate=True;",
+	"DatabaseName": "HealthCareDB"
+}

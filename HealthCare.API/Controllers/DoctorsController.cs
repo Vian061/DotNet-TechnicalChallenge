@@ -33,7 +33,7 @@ namespace HealthCare.API.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> CreateDoctor([FromBody] DoctorDTO doctorDto)
+		public async Task<IActionResult> CreateDoctor([FromBody] CreateDoctorDTO doctorDto)
 		{
 			DoctorDTO createdDoctor = await _mediator.Send(new CreateDoctorCommand(doctorDto));
 			return Ok(createdDoctor);

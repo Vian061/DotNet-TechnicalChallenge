@@ -2,7 +2,7 @@
 
 namespace HealthCare.Application.DTOs
 {
-    internal class PatientDTO : PersonDTO
+    public class PatientDTO : PersonDTO
 	{
 		public List<AppointmentDTO> Appointments { get; set; } = [];
 	}

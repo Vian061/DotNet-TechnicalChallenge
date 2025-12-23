@@ -13,6 +13,8 @@ namespace HealthCare.Application.MappingProfiles
         {
             CreateMap<DoctorDTO, Doctor>()
                 .ForMember(dest => dest.Alias, opt => opt.MapFrom(src => string.IsNullOrEmpty(src.Alias) ? Guid.NewGuid().ToString() : src.Alias));
+            CreateMap<CreateDoctorDTO, Doctor>()
+                .ForMember(dest => dest.Alias, opt => opt.MapFrom(src => string.IsNullOrEmpty(src.Alias) ? Guid.NewGuid().ToString() : src.Alias));
             CreateMap<Doctor, DoctorDTO>();
 		}
     }

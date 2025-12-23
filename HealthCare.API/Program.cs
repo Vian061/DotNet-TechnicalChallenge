@@ -48,7 +48,7 @@ if (app.Environment.IsDevelopment())
 	app.MapScalarApiReference(options =>
 	{
 		options
-			.WithTitle("OrderService API")
+			.WithTitle("HealthCare API")
 			.WithTheme(ScalarTheme.DeepSpace);
 	});
 }
