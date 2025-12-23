@@ -1,8 +1,5 @@
 ﻿using BuildingBlocks.Shared.Entities;
 using HealthCare.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HealthCare.Domain.Entities.Base
 {

@@ -25,6 +25,7 @@ namespace HealthCare.Infrastructure
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<IDoctorRepository, DoctorRepository>();
             services.AddScoped<IDoctorScheduleRepository, DoctorScheduleRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
         }
     }
 }

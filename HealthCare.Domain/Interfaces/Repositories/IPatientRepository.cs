@@ -3,7 +3,7 @@ using HealthCare.Domain.Entities;
 
 namespace HealthCare.Domain.Interfaces.Repositories
 {
-    public interface IDoctorRepository : IBaseSQLServerRepository<Doctor>, ITransactionRepository<Doctor>
+    public interface IPatientRepository : IBaseSQLServerRepository<Patient>, ITransactionRepository<Patient>
     {
     }
 }

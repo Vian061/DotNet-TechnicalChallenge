@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HealthCare.Application.ValueObjects
+﻿namespace HealthCare.Application.ValueObjects
 {
-	public record AvailabilitySlot(
-		DateTime StartUtc,
-		DateTime EndUtc
-	);
+    public record AvailabilitySlot(
+        DateTime StartUtc,
+        DateTime EndUtc
+    );
 }

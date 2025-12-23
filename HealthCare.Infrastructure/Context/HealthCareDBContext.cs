@@ -1,10 +1,6 @@
 ﻿using BuildingBlocks.Persistence.DBContex;
 using HealthCare.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Numerics;
-using System.Text;
 
 namespace HealthCare.Infrastructure.Context
 {
@@ -49,6 +45,6 @@ namespace HealthCare.Infrastructure.Context
                 e.HasIndex(x => new { x.DoctorId, x.DaysOfWeek, x.StartTime, x.EndTime })
                  .IsUnique();
             });
-		}
+        }
     }
 }

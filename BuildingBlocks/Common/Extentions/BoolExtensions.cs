@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BuildingBlocks.Common.Extentions
+﻿namespace BuildingBlocks.Common.Extentions
 {
     public static class BoolExtensions
     {

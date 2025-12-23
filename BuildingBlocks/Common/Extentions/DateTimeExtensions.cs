@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BuildingBlocks.Common.Extentions
+﻿namespace BuildingBlocks.Common.Extentions
 {
     public static class DateTimeExtensions
     {
@@ -15,9 +11,9 @@ namespace BuildingBlocks.Common.Extentions
             );
         }
 
-		public static bool IsOverlapping(this DateTime start, DateTime end)
-		{
-			return start >= end;
-		}
-	}
+        public static bool IsOverlapping(this DateTime start, DateTime end)
+        {
+            return start >= end;
+        }
+    }
 }

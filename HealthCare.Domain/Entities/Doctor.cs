@@ -1,8 +1,4 @@
-﻿using BuildingBlocks.Shared.Entities;
-using HealthCare.Domain.Entities.Base;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using HealthCare.Domain.Entities.Base;
 
 namespace HealthCare.Domain.Entities
 {

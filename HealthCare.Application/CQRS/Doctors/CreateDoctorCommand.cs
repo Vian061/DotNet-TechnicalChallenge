@@ -3,9 +3,6 @@ using HealthCare.Application.DTOs;
 using HealthCare.Domain.Entities;
 using HealthCare.Domain.Interfaces.Repositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HealthCare.Application.CQRS.Doctors
 {
@@ -27,5 +24,5 @@ namespace HealthCare.Application.CQRS.Doctors
             Doctor created = await _doctorRepository.CreateAsync(doctor);
             return _mapper.Map<DoctorDTO>(created);
         }
-	}
+    }
 }

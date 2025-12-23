@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BuildingBlocks.Shared.Entities
+﻿namespace BuildingBlocks.Shared.Entities
 {
     public class BaseId
     {

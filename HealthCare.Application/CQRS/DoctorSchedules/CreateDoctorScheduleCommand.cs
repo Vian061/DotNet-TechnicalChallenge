@@ -1,25 +1,20 @@
 ﻿using AutoMapper;
 using BuildingBlocks.Common.Exceptions;
-using BuildingBlocks.Common.Extentions;
 using HealthCare.Application.DTOs;
 using HealthCare.Domain.Entities;
-using HealthCare.Domain.Enums;
 using HealthCare.Domain.Interfaces.Repositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HealthCare.Application.CQRS.DoctorSchedules
 {
-	public sealed record CreateDoctorScheduleCommand(CreateDoctorScheduleDTO DoctorSchedule) : IRequest<DoctorScheduleDTO>;
+    public sealed record CreateDoctorScheduleCommand(CreateDoctorScheduleDTO DoctorSchedule) : IRequest<DoctorScheduleDTO>;
 
-	public sealed class CreateDoctorScheduleCommandHandler
-	: IRequestHandler<CreateDoctorScheduleCommand, DoctorScheduleDTO>
-	{
-		private readonly IDoctorRepository _doctorRepository;
-		private readonly IDoctorScheduleRepository _scheduleRepository;
-		private readonly IMapper _mapper;
+    public sealed class CreateDoctorScheduleCommandHandler
+    : IRequestHandler<CreateDoctorScheduleCommand, DoctorScheduleDTO>
+    {
+        private readonly IDoctorRepository _doctorRepository;
+        private readonly IDoctorScheduleRepository _scheduleRepository;
+        private readonly IMapper _mapper;
         public CreateDoctorScheduleCommandHandler(
             IDoctorRepository doctorRepository,
             IDoctorScheduleRepository scheduleRepository,
@@ -31,28 +26,28 @@ namespace HealthCare.Application.CQRS.DoctorSchedules
         }
 
         public async Task<DoctorScheduleDTO> Handle(
-			CreateDoctorScheduleCommand request,
-			CancellationToken ct)
-		{
-			var doctor = await _doctorRepository.GetByIdAsync(request.DoctorSchedule.DoctorId)
-				?? throw new NotFoundException("Doctor not found");
+            CreateDoctorScheduleCommand request,
+            CancellationToken ct)
+        {
+            var doctor = await _doctorRepository.GetByIdAsync(request.DoctorSchedule.DoctorId)
+                ?? throw new NotFoundException("Doctor not found");
 
-			var schedule = _mapper.Map<DoctorSchedule>(request.DoctorSchedule);
-			schedule.Doctor = doctor;
+            var schedule = _mapper.Map<DoctorSchedule>(request.DoctorSchedule);
+            schedule.Doctor = doctor;
 
-			var overlaps = await _scheduleRepository.ExistsOverlapAsync(
-				schedule.DoctorId,
-				schedule.DaysOfWeek,
-				schedule.StartTime,
-				schedule.EndTime);
+            var overlaps = await _scheduleRepository.ExistsOverlapAsync(
+                schedule.DoctorId,
+                schedule.DaysOfWeek,
+                schedule.StartTime,
+                schedule.EndTime);
 
-			if (overlaps)
-				throw new ConflictException("Schedule overlaps existing schedule");
+            if (overlaps)
+                throw new ConflictException("Schedule overlaps existing schedule");
 
-			var created = await _scheduleRepository.CreateAsync(schedule);
+            var created = await _scheduleRepository.CreateAsync(schedule);
 
-			return _mapper.Map<DoctorScheduleDTO>(created);
-		}
-	}
+            return _mapper.Map<DoctorScheduleDTO>(created);
+        }
+    }
 
 }

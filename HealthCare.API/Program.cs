@@ -19,9 +19,7 @@ builder.Services.AddSingleton(databaseConfig ?? throw new InvalidOperationExcept
 builder.Services.AddControllers();
 builder.Services.AddOpenApi(options =>
 {
-	// Specify the OpenAPI version to use
-	options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_0;
-
+    options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_0;
 });
 
 builder.Services.RegisterInfrastructure(databaseConfig);
@@ -29,14 +27,14 @@ builder.Services.RegisterApplication();
 
 builder.Services.AddCors(options =>
 {
-	options.AddPolicy("AllowAll",
-		policy =>
-		{
-			policy
-				.AllowAnyOrigin()
-				.AllowAnyMethod()
-				.AllowAnyHeader();
-		});
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
 });
 
 var app = builder.Build();
@@ -46,14 +44,14 @@ app.UseMiddleware<GlobalExceptionMiddleware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-	app.MapOpenApi("/openapi/v1.json");
+    app.MapOpenApi("/openapi/v1.json");
 
-	app.MapScalarApiReference(options =>
-	{
-		options
-			.WithTitle("HealthCare API")
-			.WithTheme(ScalarTheme.DeepSpace);
-	});
+    app.MapScalarApiReference(options =>
+    {
+        options
+            .WithTitle("HealthCare API")
+            .WithTheme(ScalarTheme.DeepSpace);
+    });
 }
 
 app.UseCors("AllowAll");

@@ -44,7 +44,7 @@ namespace HealthCare.Infrastructure.Repositories
                 .FirstOrDefaultAsync(_ => _.Id == id);
         }
 
-        public async Task<List<Appointment>> GetActiveAppointmentsInRangeAsync(int doctorId, DateTime start, DateTime end) 
+        public async Task<List<Appointment>> GetActiveAppointmentsInRangeAsync(int doctorId, DateTime start, DateTime end)
         {
             return await Context.Appointments
                 .Where(_ => _.DoctorId == doctorId
@@ -53,10 +53,10 @@ namespace HealthCare.Infrastructure.Repositories
                                 || (_.EndUtc > start && _.EndUtc <= end)
                                 || (_.StartUtc <= start && _.EndUtc >= end)))
                 .ToListAsync();
-		}
+        }
 
 
-		public async Task<Appointment> CreateAsync(Appointment appointment)
+        public async Task<Appointment> CreateAsync(Appointment appointment)
         {
             var result = Context.Appointments.Add(appointment);
             await Context.SaveChangesAsync();

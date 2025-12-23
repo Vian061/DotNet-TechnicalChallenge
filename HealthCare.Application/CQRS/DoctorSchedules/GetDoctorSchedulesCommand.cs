@@ -4,14 +4,11 @@ using HealthCare.Application.DTOs;
 using HealthCare.Domain.Entities;
 using HealthCare.Domain.Interfaces.Repositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HealthCare.Application.CQRS.DoctorSchedules
 {
     public sealed record GetDoctorSchedulesCommand(int DoctorId, int PageNumber, int PageSize) : IRequest<PagedResult<DoctorScheduleDTO>>;
-    
+
     public sealed class GetDoctorSchedulesCommandHandler : IRequestHandler<GetDoctorSchedulesCommand, PagedResult<DoctorScheduleDTO>>
     {
         private readonly IDoctorScheduleRepository _doctorScheduleRepository;
@@ -26,5 +23,5 @@ namespace HealthCare.Application.CQRS.DoctorSchedules
             PagedResult<DoctorSchedule> schedules = await _doctorScheduleRepository.GetAllByDoctorIdAsync(request.DoctorId, request.PageNumber, request.PageSize);
             return _mapper.Map<PagedResult<DoctorScheduleDTO>>(schedules);
         }
-	}
+    }
 }

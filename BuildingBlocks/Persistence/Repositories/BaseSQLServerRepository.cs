@@ -1,9 +1,6 @@
 ﻿using BuildingBlocks.Persistence.DBContex;
 using BuildingBlocks.Persistence.Interfaces;
 using BuildingBlocks.Shared.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BuildingBlocks.Persistence.Repositories
 {

@@ -2,9 +2,6 @@
 using BuildingBlocks.Shared.Entities;
 using HealthCare.Application.DTOs;
 using HealthCare.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HealthCare.Application.MappingProfiles
 {
@@ -16,6 +13,6 @@ namespace HealthCare.Application.MappingProfiles
             CreateMap<PagedResult<Doctor>, PagedResult<DoctorDTO>>();
             CreateMap<PagedResult<DoctorSchedule>, PagedResult<DoctorScheduleDTO>>();
             CreateMap<PagedResult<Patient>, PagedResult<PatientDTO>>();
-		}
+        }
     }
 }
