@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BuildingBlocks.Shared.DTOs
 {
-    internal class BaseObjectDTO
+    public class BaseObjectDTO : BaseIdDTO
     {
         public BaseObjectDTO()
         {
