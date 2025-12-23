@@ -5,10 +5,10 @@ using System.Text;
 
 namespace HealthCare.Application.DTOs.Base
 {
-	public class PersonDTO : BaseObjectDTO
+	public interface PersonDTO
 	{
-		public string Name { get; set; } = default!;
+		public string Name { get; set; }
 		public int Age { get; set; }
-		public required string Gender { get; set; }
+		public string Gender { get; set; }
 	}
 }

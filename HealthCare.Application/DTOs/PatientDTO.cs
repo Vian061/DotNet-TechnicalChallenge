@@ -1,9 +1,13 @@
-﻿using HealthCare.Application.DTOs.Base;
+﻿using BuildingBlocks.Shared.DTOs;
+using HealthCare.Application.DTOs.Base;
 
 namespace HealthCare.Application.DTOs
 {
-    public class PatientDTO : PersonDTO
+    public class PatientDTO : BaseObjectDTO,PersonDTO
 	{
+		public required string Name { get; set; }
+		public int Age { get; set; }
+		public required string Gender { get; set; }
 		public List<AppointmentDTO> Appointments { get; set; } = [];
 	}
 }
