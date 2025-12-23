@@ -61,6 +61,21 @@ namespace HealthCare.Infrastructure.Repositories
             );
         }
 
+        public async Task<bool> IsWithinDoctorSchedule(
+            int doctorId,
+            DayOfWeekFlags day,
+            DateTime start,
+            DateTime end)
+        {
+            return await Context.DoctorSchedules
+                .AnyAsync(s =>
+                    s.DoctorId == doctorId &&
+                    s.DaysOfWeek.HasFlag(day) &&
+                    start.TimeOfDay >= s.StartTime &&
+                    end.TimeOfDay <= s.EndTime
+                );
+        }
+
         public async Task<List<DoctorSchedule>> GetActiveSchedulesAsync(int doctorId)
         {
             return await Context.DoctorSchedules

@@ -13,6 +13,7 @@ namespace HealthCare.Application.DTOs
 
     public class DoctorDTO : BaseObjectDTO, PersonDTO
     {
+        public string TimeZone { get; set; } = "Asia/Jakarta";
         public required string Name { get; set; }
         public int Age { get; set; }
         public required string Gender { get; set; }

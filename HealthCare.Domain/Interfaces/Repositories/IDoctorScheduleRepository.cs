@@ -10,5 +10,6 @@ namespace HealthCare.Domain.Interfaces.Repositories
         Task<PagedResult<DoctorSchedule>> GetAllByDoctorIdAsync(int doctorId, int pageNumber = 1, int pageSize = 20);
         Task<List<DoctorSchedule>> GetActiveSchedulesAsync(int doctorId);
         Task<bool> ExistsOverlapAsync(int doctorId, DayOfWeekFlags days, TimeSpan start, TimeSpan end);
+        Task<bool> IsWithinDoctorSchedule(int doctorId, DayOfWeekFlags day, DateTime start, DateTime end);
     }
 }

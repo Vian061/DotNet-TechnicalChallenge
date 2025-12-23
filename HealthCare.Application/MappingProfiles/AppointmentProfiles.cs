@@ -10,8 +10,11 @@ namespace HealthCare.Application.MappingProfiles
     {
         public AppointmentProfiles()
         {
+            CreateMap<CreateAppointmentDTO, Appointment>()
+                .ForMember(dest => dest.Alias, opt => opt.MapFrom(src => Guid.NewGuid().ToString()))
+                .ForMember(dest => dest.EndUtc, opt => opt.MapFrom(src => src.StartUtc.AddMinutes(src.Duration)))
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => AppointmentStatus.Active));
             CreateMap<AppointmentDTO, Appointment>()
-                .ForMember(dest => dest.Alias, opt => opt.MapFrom(src => string.IsNullOrEmpty(src.Alias) ? Guid.NewGuid().ToString() : src.Alias))
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToEnumOrDefault<AppointmentStatus>()));
             CreateMap<Appointment, AppointmentDTO>()
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()));

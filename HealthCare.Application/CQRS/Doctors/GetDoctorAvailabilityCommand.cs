@@ -1,5 +1,6 @@
 ﻿using BuildingBlocks.Common.Exceptions;
 using BuildingBlocks.Common.Extentions;
+using HealthCare.Application.Extentions;
 using HealthCare.Application.ValueObjects;
 using HealthCare.Domain.Enums;
 using HealthCare.Domain.Interfaces.Repositories;
@@ -52,7 +53,7 @@ namespace HealthCare.Application.CQRS.Doctors
             // 5️ Slot generation (same logic as before)
             for (var date = request.From.Date; date <= request.To.Date; date = date.AddDays(1))
             {
-                var dayFlag = ToFlag(date.DayOfWeek);
+                var dayFlag = date.DayOfWeek.ToFlag();
 
                 foreach (var schedule in schedules.Where(s => s.DaysOfWeek.HasFlag(dayFlag)))
                 {
@@ -81,16 +82,5 @@ namespace HealthCare.Application.CQRS.Doctors
             return slots;
         }
 
-        private static DayOfWeekFlags ToFlag(DayOfWeek day) => day switch
-        {
-            DayOfWeek.Monday => DayOfWeekFlags.Monday,
-            DayOfWeek.Tuesday => DayOfWeekFlags.Tuesday,
-            DayOfWeek.Wednesday => DayOfWeekFlags.Wednesday,
-            DayOfWeek.Thursday => DayOfWeekFlags.Thursday,
-            DayOfWeek.Friday => DayOfWeekFlags.Friday,
-            DayOfWeek.Saturday => DayOfWeekFlags.Saturday,
-            DayOfWeek.Sunday => DayOfWeekFlags.Sunday,
-            _ => DayOfWeekFlags.None
-        };
     }
 }

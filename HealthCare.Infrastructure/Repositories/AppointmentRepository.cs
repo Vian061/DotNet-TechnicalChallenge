@@ -55,6 +55,26 @@ namespace HealthCare.Infrastructure.Repositories
                 .ToListAsync();
         }
 
+        public async Task<bool> ExistsOverlapAsync(
+        int doctorId,
+        DateTime startUtc,
+        DateTime endUtc)
+        {
+            return await Context.Appointments.AnyAsync(a =>
+                a.DoctorId == doctorId &&
+                a.Status == AppointmentStatus.Active &&
+                a.StartUtc < endUtc &&
+                a.EndUtc > startUtc);
+        }
+
+        public async Task CancelAppointment(Appointment appointment)
+        {
+            appointment.Status = AppointmentStatus.Cancelled;
+            appointment.CancelledAtUtc = DateTime.UtcNow;
+            Context.Appointments.Update(appointment);
+            await Context.SaveChangesAsync();
+
+        }
 
         public async Task<Appointment> CreateAsync(Appointment appointment)
         {

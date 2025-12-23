@@ -3,13 +3,13 @@
     public enum DayOfWeekFlags
     {
         None = 0,
-        Monday = 10,
-        Tuesday = 20,
-        Wednesday = 30,
-        Thursday = 40,
-        Friday = 50,
-        Saturday = 60,
-        Sunday = 70
+        Monday = 1,
+        Tuesday = 2,
+        Wednesday = 4,
+        Thursday = 8,
+        Friday = 16,
+        Saturday = 32,
+        Sunday = 64
     }
 
     public enum Gender

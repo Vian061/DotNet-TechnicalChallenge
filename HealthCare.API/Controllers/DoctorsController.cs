@@ -1,4 +1,5 @@
-﻿using BuildingBlocks.Shared.Entities;
+﻿using BuildingBlocks.Common.Extentions;
+using BuildingBlocks.Shared.Entities;
 using HealthCare.Application.CQRS.Doctors;
 using HealthCare.Application.DTOs;
 using MediatR;
@@ -30,6 +31,22 @@ namespace HealthCare.API.Controllers
         {
             DoctorDTO? doctor = await _mediator.Send(new GetDoctorByIdCommand(id));
             return Ok(doctor);
+        }
+
+        [HttpGet]
+        [Route("{id:int}/availability")]
+        public async Task<IActionResult> GetDoctorAvailability(int id, DateTime from, DateTime to, int slot )
+        {
+            if(from.IsOverlapping(to))
+            {
+                return BadRequest("The 'from' date must be earlier than the 'to' date.");
+            }
+
+            if (slot is not (15 or 30 or 60))
+                return BadRequest("slot must be 15, 30, or 60 minutes");
+
+            var result = await _mediator.Send(new GetDoctorAvailabilityCommand(id, from, to, slot));
+            return Ok(result);
         }
 
         [HttpPost]

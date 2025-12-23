@@ -7,11 +7,11 @@ namespace HealthCare.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PatienController : ControllerBase
+    public class PatientsController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public PatienController(IMediator mediator)
+        public PatientsController(IMediator mediator)
         {
             _mediator = mediator;
         }
