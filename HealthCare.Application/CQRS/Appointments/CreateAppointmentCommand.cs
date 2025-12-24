@@ -72,20 +72,14 @@ namespace HealthCare.Application.CQRS.Appointments
                 throw new ConflictException("Overlapping appointment");
 
             // 6 Create entity
-            var appointment = new Appointment
-            {
-                DoctorId = request.Appointment.DoctorId,
-                PatientId = request.Appointment.PatientId,
-                StartUtc = startUtc,
-                EndUtc = endUtc
-            };
+            var appointment = _mapper.Map<Appointment>(request.Appointment);
+            appointment.StartUtc = startUtc;
+            appointment.EndUtc = endUtc;
 
-            var mappedAppointment = _mapper.Map<Appointment>(request.Appointment);
+			// 5️ Persist
+			var created = await _appointmentRepo.CreateAsync(appointment);
 
-            // 5️ Persist
-            var created = await _appointmentRepo.CreateAsync(appointment);
-
-            return _mapper.Map<AppointmentDTO>(mappedAppointment);
+            return _mapper.Map<AppointmentDTO>(created);
         }
     }
 }

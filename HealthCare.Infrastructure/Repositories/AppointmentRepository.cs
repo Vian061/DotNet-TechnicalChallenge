@@ -44,6 +44,26 @@ namespace HealthCare.Infrastructure.Repositories
                 .FirstOrDefaultAsync(_ => _.Id == id);
         }
 
+        public async Task<PagedResult<Appointment>> GetByPatientIdAsync(int patientId, int pageNumber = 1, int pageSize = 20)
+        {
+            IQueryable<Appointment> query = Context.Appointments
+                .Where(_ => _.PatientId == patientId)
+                .Include(_ => _.Doctor)
+                .Include(_ => _.Patient);
+            int totalItems = await query.CountAsync();
+            List<Appointment> data = await query
+                .OrderByDescending(_ => _.DateCreated)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+            return new PagedResult<Appointment>(
+                data,
+                pageNumber,
+                pageSize,
+                totalItems
+            );
+        }
+
         public async Task<List<Appointment>> GetActiveAppointmentsInRangeAsync(int doctorId, DateTime start, DateTime end)
         {
             return await Context.Appointments

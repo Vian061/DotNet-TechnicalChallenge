@@ -18,6 +18,5 @@ namespace HealthCare.Application.DTOs
         public int Age { get; set; }
         public required string Gender { get; set; }
         public List<DoctorScheduleDTO> Schedules { get; set; } = [];
-        public List<AppointmentDTO> Appointments { get; set; } = [];
     }
 }

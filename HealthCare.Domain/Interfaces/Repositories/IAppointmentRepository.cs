@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks.Persistence.Interfaces;
+using BuildingBlocks.Shared.Entities;
 using HealthCare.Domain.Entities;
 
 namespace HealthCare.Domain.Interfaces.Repositories
@@ -8,5 +9,7 @@ namespace HealthCare.Domain.Interfaces.Repositories
         Task CancelAppointment(Appointment appointment);
         Task<List<Appointment>> GetActiveAppointmentsInRangeAsync(int doctorId, DateTime start, DateTime end);
         Task<bool> ExistsOverlapAsync(int doctorId, DateTime startUtc, DateTime endUtc);
-    }
+        Task<PagedResult<Appointment>> GetByPatientIdAsync(int patientId, int pageNumber = 1, int pageSize = 20);
+
+	}
 }

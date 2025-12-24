@@ -49,7 +49,7 @@ namespace HealthCare.API.Middlewares
             {
                 problem.Status = 500;
                 problem.Title = "Internal Server Error";
-                problem.Detail = "An unexpected error occurred";
+                problem.Detail = exception.Message;
             }
 
             context.Response.StatusCode = problem.Status.Value;
