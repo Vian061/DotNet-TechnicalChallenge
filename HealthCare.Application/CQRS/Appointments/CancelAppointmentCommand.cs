@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks.Common.Exceptions;
+using HealthCare.Domain.Configs;
 using HealthCare.Domain.Enums;
 using HealthCare.Domain.Interfaces.Repositories;
 using MediatR;
@@ -14,14 +15,11 @@ namespace HealthCare.Application.CQRS.Appointments
     public sealed class CancelAppointmentCommandHandler : IRequestHandler<CancelAppointmentCommand>
     {
         private readonly IAppointmentRepository _appointmentRepo;
-
-        private static readonly TimeSpan CutOff = TimeSpan.FromHours(2);
-
-        public CancelAppointmentCommandHandler(
-            IAppointmentRepository appointmentRepo
-            )
+        private readonly AppConfig _appconfig;
+        public CancelAppointmentCommandHandler(IAppointmentRepository appointmentRepo, AppConfig appconfig)
         {
             _appointmentRepo = appointmentRepo;
+            _appconfig = appconfig;
         }
 
         public async Task Handle(
@@ -36,8 +34,9 @@ namespace HealthCare.Application.CQRS.Appointments
                 return; // idempotent
 
             var nowUtc = DateTime.UtcNow;
+            TimeSpan cutOff = TimeSpan.FromHours(_appconfig.CutOffHour);
 
-            if (nowUtc >= appointment.StartUtc.Subtract(CutOff))
+            if (nowUtc >= appointment.StartUtc.Subtract(cutOff))
                 throw new ConflictException(
                     "Appointment cannot be cancelled within 2 hours of start time");
 
