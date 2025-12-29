@@ -70,7 +70,7 @@ namespace HealthCare.Infrastructure.Repositories
             return await Context.DoctorSchedules
                 .AnyAsync(s =>
                     s.DoctorId == doctorId &&
-                    s.DaysOfWeek.HasFlag(day) &&
+                    s.DaysOfWeek == day &&
                     start.TimeOfDay >= s.StartTime &&
                     end.TimeOfDay <= s.EndTime
                 );
@@ -93,6 +93,7 @@ namespace HealthCare.Infrastructure.Repositories
                 .AnyAsync(ds =>
                     ds.DoctorId == doctorId &&
                     (ds.DaysOfWeek & days) != 0 &&
+                    ds.DaysOfWeek == days &&
                     ds.IsActive &&
                     ((start < ds.EndTime) && (end > ds.StartTime))
                 );

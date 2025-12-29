@@ -55,7 +55,7 @@ namespace HealthCare.Application.CQRS.Doctors
             {
                 var dayFlag = date.DayOfWeek.ToFlag();
 
-                foreach (var schedule in schedules.Where(s => s.DaysOfWeek.HasFlag(dayFlag)))
+                foreach (var schedule in schedules.Where(s => s.DaysOfWeek == dayFlag))
                 {
                     var localStart = date.Add(schedule.StartTime);
                     var localEnd = date.Add(schedule.EndTime);
