@@ -4,18 +4,18 @@ namespace HealthCare.Application.DTOs
 {
     public class CreateDoctorScheduleDTO
     {
-        public int DoctorId { get; set; }
+        public required int DoctorId { get; set; }
         public required string DaysOfWeek { get; set; }
-        public TimeSpan StartTime { get; set; }
-        public TimeSpan EndTime { get; set; }
+        public required TimeSpan StartTime { get; set; }
+        public required TimeSpan EndTime { get; set; }
     }
 
     public class UpdateDoctorScheduleDTO : BaseIdDTO
     {
-        public int DoctorId { get; set; }
+        public required int DoctorId { get; set; }
         public required string DaysOfWeek { get; set; }
-        public TimeSpan StartTime { get; set; }
-        public TimeSpan EndTime { get; set; }
+        public required TimeSpan StartTime { get; set; }
+        public required TimeSpan EndTime { get; set; }
     }
 
     public class DoctorScheduleDTO : BaseObjectDTO

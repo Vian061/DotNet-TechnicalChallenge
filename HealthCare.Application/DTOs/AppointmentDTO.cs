@@ -4,10 +4,10 @@ namespace HealthCare.Application.DTOs
 {
     public class CreateAppointmentDTO
     {
-        public int DoctorId { get; set; }
-        public int PatientId { get; set; }
-        public DateTime StartUtc { get; set; }
-        public int Duration { get; set; }
+        public required int DoctorId { get; set; }
+        public required int PatientId { get; set; }
+        public required DateTime StartUtc { get; set; }
+        public required int Duration { get; set; }
     }
 
     public class AppointmentDTO : BaseObjectDTO

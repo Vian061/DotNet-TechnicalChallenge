@@ -1,26 +1,29 @@
 ﻿namespace HealthCare.Domain.Enums
 {
-    public enum DayOfWeekFlags
-    {
-        None = 0,
-        Monday = 1,
-        Tuesday = 2,
-        Wednesday = 4,
-        Thursday = 8,
-        Friday = 16,
-        Saturday = 32,
-        Sunday = 64
-    }
+	public enum DayOfWeekFlags
+	{
+		None = 0,
+		Monday = 1,
+		Tuesday = 2,
+		Wednesday = 4,
+		Thursday = 8,
+		Friday = 16,
+		Saturday = 32,
+		Sunday = 64,
 
-    public enum Gender
-    {
-        Male,
-        Female
-    }
+		Weekdays = Monday | Tuesday | Wednesday | Thursday | Friday,
+		Weekend = Saturday | Sunday
+	}
 
-    public enum AppointmentStatus
-    {
-        Active = 10,
-        Cancelled = 20
-    }
+	public enum Gender
+	{
+		Male,
+		Female
+	}
+
+	public enum AppointmentStatus
+	{
+		Active = 10,
+		Cancelled = 20
+	}
 }

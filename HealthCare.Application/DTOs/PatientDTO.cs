@@ -6,7 +6,7 @@ namespace HealthCare.Application.DTOs
     public class CreatePatientDTO : PersonDTO
     {
         public required string Name { get; set; }
-        public int Age { get; set; }
+        public required int Age { get; set; }
         public required string Gender { get; set; }
     }
 
