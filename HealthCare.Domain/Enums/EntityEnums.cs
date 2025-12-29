@@ -1,5 +1,6 @@
 ﻿namespace HealthCare.Domain.Enums
 {
+	[Flags]
 	public enum DayOfWeekFlags
 	{
 		None = 0,
@@ -10,9 +11,6 @@
 		Friday = 16,
 		Saturday = 32,
 		Sunday = 64,
-
-		Weekdays = Monday | Tuesday | Wednesday | Thursday | Friday,
-		Weekend = Saturday | Sunday
 	}
 
 	public enum Gender
