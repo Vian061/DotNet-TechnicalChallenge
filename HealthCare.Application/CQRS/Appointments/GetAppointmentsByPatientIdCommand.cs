@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using BuildingBlocks.Shared.Entities;
+using Hangfire;
 using HealthCare.Application.DTOs;
+using HealthCare.Application.Services;
 using HealthCare.Domain.Interfaces.Repositories;
 using MediatR;
 using System;

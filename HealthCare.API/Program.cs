@@ -1,4 +1,5 @@
 using BuildingBlocks.Shared.Configs;
+using Hangfire;
 using HealthCare.API.Middlewares;
 using HealthCare.Application;
 using HealthCare.Domain.Configs;
@@ -40,6 +41,14 @@ builder.Services.AddCors(options =>
                 .AllowAnyHeader();
         });
 });
+builder.Services.AddHangfire(config =>
+{
+    config.UseSimpleAssemblyNameTypeSerializer()
+          .UseRecommendedSerializerSettings()
+          .UseSqlServerStorage(appConfig.HangfireConnectionString);
+});
+
+builder.Services.AddHangfireServer();
 
 var app = builder.Build();
 
@@ -56,6 +65,7 @@ if (app.Environment.IsDevelopment())
             .WithTitle("HealthCare API")
             .WithTheme(ScalarTheme.DeepSpace);
     });
+    app.UseHangfireDashboard("/hangfire");
 }
 
 app.UseCors("AllowAll");

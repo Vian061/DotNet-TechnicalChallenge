@@ -7,7 +7,6 @@ namespace HealthCare.Domain.Configs
 
     public class AppSetting
     {
-        public AppConfig AppConfig { get; set; } = default!;
         public Logging Logging { get; set; } = default!;
         public string AllowedHosts { get; set; } = default!;
     }
@@ -15,6 +14,7 @@ namespace HealthCare.Domain.Configs
     public class AppConfig
     {
         public int CutOffHour { get; set; }
+        public string HangfireConnectionString { get; set; } = default!;
     }
 
     public class Logging

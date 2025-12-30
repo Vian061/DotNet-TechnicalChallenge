@@ -1,3 +1,4 @@
 {
-  "CutOffHour": 2
+  "CutOffHour": 2,
+  "HangfireConnectionString": "Server=localhost;Database=HealthCareHangfireDB;User Id=sa;Password=QwertY!23;TrustServerCertificate=True;"
 }
